@@ -1,21 +1,23 @@
 <?php
 
     Class Model {
+        //DB credentials
         private $server = "localhost";
         private $username = "root";
         private $password;
         private $db = "oop_crud";
         private $conn;
 
+        //Constructor for mysqli class object connection
         public function __construct(){
             try {
-
                 $this->conn = new mysqli($this->server, $this->username, $this->password, $this->db);
             } catch (Exception $e) {
                 echo "connection failed" . $e->getMessage();
             }
         }
 
+        //Insert data into DB
         public function insert(){
             if(isset($_POST['submit'])){
                 if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['mobile']) && isset($_POST['address'])){
@@ -40,6 +42,42 @@
                         echo "<script>window.location.href = 'index.php'</script>";
                     }
                 }
+            }
+        }
+
+        public function fetch() {
+            $data = null;
+
+            $query = "SELECT * FROM records";
+
+            if($sql = $this->conn->query($query)) {
+                while($row = mysqli_fetch_assoc($sql)){
+                    $data[] = $row;
+                }
+                return $data; 
+            }
+        }
+
+        public function fetch_single($id) {
+            $data = null;
+
+            $query = "SELECT * FROM records WHERE id = '$id'";
+
+            if($sql = $this->conn->query($query)) {
+                while($row = $sql->fetch_assoc()){
+                    $data = $row;
+                }
+                return $data; 
+            }
+        }
+
+        public function delete($id) {
+            $query = "DELETE FROM records WHERE id = '$id'";
+
+            if($sql = $this->conn->query($query)) {
+                return true; 
+            } else {
+                return false;
             }
         }
 

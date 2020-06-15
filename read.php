@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>Insert - PHP OOP CRUD</title>
+    <title>Hello, world!</title>
   </head>
   <body>
     <div class="container">
@@ -24,31 +25,27 @@
                 <?php 
                     include 'model.php';
                     $model = new Model();
-                    $insert = $model->insert();
+                    $id = $_REQUEST['id'];
+                    $row = $model->fetch_single($id);
+                    // var_dump($row);
+                    if(!empty($row)){
                 ?>
-                <form action="" method="post">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" id="" class="form-control">
+                <div class="card">
+                    <div class="card-header">Single Record</div>
+                    <div class="card-body">
+                        <p><b>Name:</b> <?php echo $row['name']; ?></p>
+                        <p><b>Email:</b> <?php echo $row['email']; ?></p>
+                        <p><b>Mobile:</b> <?php echo $row['mobile']; ?></p>
+                        <p><b>Address: </b> <?php echo $row['address']; ?></p>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="mobile">Mobile No.</label>
-                        <input type="text" name="mobile" id="" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Address</label>
-                        <textarea name="address" id="" cols="" rows="3" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" name="submit" id="" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
+                </div>
+                <?php 
+                    } else{
+                        echo "No Data Availbale";
+                    }
+                ?>
             </div>
-        </div>
+        <div>
     </div>
 
     <!-- Optional JavaScript -->
