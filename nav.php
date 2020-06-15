@@ -9,13 +9,7 @@
         <a class="nav-link" href="index.php">Insert <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="records.php">View</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Update</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Delete</a>
+        <a class="nav-link" href="records.php">All Data</a>
       </li>
     </ul>
   </div>
